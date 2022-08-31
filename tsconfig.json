@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "preserve",
     "target": "ES2019",
     "module": "es2022",
     "lib": ["dom", "esnext"],

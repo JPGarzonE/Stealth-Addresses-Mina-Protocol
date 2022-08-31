@@ -10,4 +10,12 @@ coverage
 .DS_Store
 
 # Never commit keys to Git!
+# Never commit keys to Git!
 keys
+.idea
+design.adoc
+
+#project
+public/js
+dist
+gcp

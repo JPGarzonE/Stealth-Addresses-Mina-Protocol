@@ -14,8 +14,11 @@
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && esbuild --minify --splitting --bundle ./src/UI/Index.tsx --outdir=./gcp/public/js --format=esm --target=esnext --define:process.env.NODE_ENV='\"production\"'",
     "coverage": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/.bin/jest --coverage",
+    "start": "node gcp/server.js",
+    "serve": "node src/server.js & esbuild --watch --splitting --bundle ./src/UI/Index.tsx --outdir=./public/js --format=esm --target=esnext --define:process.env.NODE_ENV='\"development\"'",
+    "local-build": "esbuild --minify --splitting --bundle ./src/UI/Index.tsx --outdir=./public/js --format=esm --target=esnext --define:process.env.NODE_ENV='\"production\"'",
     "format": "prettier --write --ignore-unknown **/*",
     "prepare": "husky install",
     "test": "node --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads node_modules/.bin/jest",
@@ -32,6 +35,8 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
     "@types/jest": "^27.0.3",
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.7.0",
@@ -45,5 +50,11 @@
   },
   "peerDependencies": {
     "snarkyjs": "^0.5.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.54",
+    "express": "^4.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
